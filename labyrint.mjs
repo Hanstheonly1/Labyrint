@@ -40,10 +40,12 @@ let playerPos = {
     col: null,
 }
 
-const DOOR = "|";
+const DOOR_1 = "|";
+const DOOR_2 = "_";
 const EMPTY = " ";
 const HERO = "H";
-const LOOT = "$"
+const LOOT = "$";
+const TELEPORT = "♨︎";
 
 let direction = -1;
 
@@ -104,6 +106,28 @@ class Labyrinth {
                 let loot = Math.round(Math.random() * 7) + 3;
                 playerStats.chash += loot;
                 eventText = `Player gained ${loot}$`;
+            }
+            else if (currentItem == DOOR_1)
+            {
+                if (level == 1)
+                {
+                    level --;
+                }
+                else if (level == 0)
+                {
+                    level ++;
+                }
+            }
+            else if (currentItem == DOOR_2)
+            {
+                if (level == 1)
+                {
+                    level ++;
+                }
+                else if (level == 2)
+                {
+                    level --;
+                }
             }
 
             // Move the HERO
